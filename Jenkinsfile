@@ -1,13 +1,5 @@
 pipeline {
 
-    parameters {
-        booleanParam(
-            name: 'autoApprove',
-            defaultValue: false,
-            description: 'Automatically run apply after generating plan?'
-        )
-    }
-
     triggers {
         githubPush()
     }
@@ -24,7 +16,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    dir("terraform") {
+                    dir('terraform') {
                         git branch: 'main',
                             url: 'https://github.com/JayaShreeCloudTechnology/Terraform-Jenkins-Automation.git'
                     }
@@ -57,12 +49,6 @@ pipeline {
         }
 
         stage('Terraform Apply') {
-            when {
-                expression {
-                    params.autoApprove == true
-                }
-            }
-
             steps {
                 dir('terraform') {
                     sh 'terraform apply -auto-approve'
@@ -71,3 +57,4 @@ pipeline {
         }
     }
 }
+
