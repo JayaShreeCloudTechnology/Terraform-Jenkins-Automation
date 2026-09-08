@@ -1,10 +1,10 @@
 provider "aws" {
-  region = "ap-southeast-1"
+  region = "ap-south-1"
 }
 
 # EC2 Instance
 resource "aws_instance" "foo" {
-  ami           = "ami-02159ad7e38d562f2" # ap-southeast-1
+  ami           = "ami-01a00762f46d584a1" # ap-south-1
   instance_type = "t3.micro"
 
   tags = {
@@ -14,7 +14,7 @@ resource "aws_instance" "foo" {
 
 # S3 Bucket
 resource "aws_s3_bucket" "demo" {
-  bucket = "terraform-jenkins-bucket-2026"
+  bucket = "cloudvision-bucket-hyd-2027"
 
   tags = {
     Name        = "Terraform-S3"
@@ -27,6 +27,6 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "terraform-vpc"
+    Name = "test-vpc"
   }
 }
